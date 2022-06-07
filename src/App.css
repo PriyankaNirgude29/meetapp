@@ -11,14 +11,14 @@ ul {
   list-style: none;
 }
 
-ul {
-  padding: 0;
-  list-style: none;
-}
-
 p {
   margin: 5px 0;
 }
+
+.display-none {
+  display: none;
+}
+
 
 showSuggestions {
   display: block;

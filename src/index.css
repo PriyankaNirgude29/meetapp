@@ -1,3 +1,10 @@
+:root {
+  --col-primary: rgb(226, 199, 156);
+  --col-secondary: rgb(42, 42, 42);
+  --background-pri: rgba(0, 80, 253, 0.068);
+  --text-pri: rgba(56, 56, 56, 0.829);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +17,39 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header {
+  color: var(col-primary) !important;
+}
+
+.card-header {
+  background-color: var(--background-primary) !important;
+  color: var(--text-pri) !important;
+}
+
+.card-body {
+  background-color: var(--background-pri) !important;
+}
+
+.event {
+  padding: 10px 10px 35px;
+  /* margin-bottom: 10px; */
+  /* text-align: left; */
+  /* border: 1px solid #ccc; */
+  border-radius: 4px;
+  /* position: relative; */
+  color: var(--text-pri) !important;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-button {
+  margin: 0.5rem 2rem;
+  /* margin: 0.5rem; */
+  border-radius: 10px !important;
+  cursor: pointer;
 }
