@@ -40,10 +40,10 @@ class App extends Component {
       <div className="App">
         <Container>
         <Row className="d-flex justify-content-between p-3 m-3">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
         </Row>
         <EventList events={this.state.events} />
-        <NumberOfEvents />
+       
         </Container>
       </div>
     );
