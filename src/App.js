@@ -11,18 +11,33 @@ import { getEvents, extractLocations } from "./api";
 class App extends Component {
   state = {
     events: [],
-    locations: []
+    locations: [],
+    locationSelected: 'all',
+    numberOfEvents: 12,
   }
-  updateEvents = (location) => {
-    getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) => event.location === location);
+
+  updateEvents = (location, eventCount) => {
+    if (eventCount === undefined) {
+      eventCount = this.state.numberOfEvents;
+  } else(
+      this.setState({ numberOfEvents: eventCount })
+  )
+  if (location === undefined) {
+      location = this.state.locationSelected;
+  }
+  console.log(eventCount, location)
+  getEvents().then((events) => {
+      let locationEvents = location === "all" ?
+          events :
+          events.filter((event) => event.location === location);
       this.setState({
-        events: locationEvents
-      });
-    });
+          events: locationEvents.slice(0, eventCount),
+          numberOfEvents: eventCount,
+          locationSelected: location,
+      }); 
+   })
   }
+  
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
