@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { InputGroup, FormControl, Col } from 'react-bootstrap';
 
 class NumberOfEvents extends Component {
+  
   state = { 
     numberOfEvents : 12
   }
