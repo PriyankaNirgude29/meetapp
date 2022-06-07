@@ -6,9 +6,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+//React 18
+// const rootElement = document.getElementById("root");
+// const root = createRoot(rootElement);
+
 root.render(
   <React.StrictMode>
-    <App />
+        <App />
   </React.StrictMode>
 );
 
