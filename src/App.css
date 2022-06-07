@@ -2,37 +2,94 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App * {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+  padding: 0;
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 5px 0;
+}
+
+showSuggestions {
+  display: block;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 8px 6px 8px 10px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  line-height: 20px;
+  align-self: center;
+  height: 38px;
+}
+
+.city {
+  width: 350px;
+}
+
+.CitySearch {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-basis: 300px;
+  max-width: 300px;
+  position: relative;
 }
 
-.App-link {
-  color: #61dafb;
+.suggestions {
+  position: relative;
+  z-index: 999;
+  margin: 10;
+  font-size: 14px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.suggestions>li {
+  text-align: left;
+  padding: 8px 6px 8px 10px;
+  background-color: rgba(22, 170, 255, 0.068);
+  cursor: pointer;
+}
+
+.suggestions>li:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.suggestions>li:hover {
+  background-color: #dfdfdf;
+}
+
+.event {
+  padding: 10px 10px 35px;
+  margin-bottom: 10px;
+  text-align: left;
+  border-radius: 4px;
+  position: relative;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.description {
+  overflow-x: hidden;
+}
+
+.numberOfEvents {
+  width: 200px;
+  margin: 20px auto;
+  text-align: center;
 }

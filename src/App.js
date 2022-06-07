@@ -1,6 +1,7 @@
 import React,{ Component } from "react";
 import "./App.css";
 import "./nprogress.css";
+import { Container, Row } from "react-bootstrap";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
@@ -37,9 +38,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Container>
+        <Row className="d-flex justify-content-between p-3 m-3">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        </Row>
         <EventList events={this.state.events} />
         <NumberOfEvents />
+        </Container>
       </div>
     );
   }
