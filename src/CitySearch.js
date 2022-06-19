@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { InputGroup, FormControl, Col  } from "react-bootstrap";
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
     state = {
@@ -14,16 +15,26 @@ class CitySearch extends Component {
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
           });
-        this.setState({
+
+          if (suggestions.length === 0) {
+            this.setState({
+              query: value,
+              infoText: 'We can not find the city you are looking for. Please try another city',
+            });
+          } else {
+        return this.setState({
             query: value ,
             suggestions,
+            infoText:''
         });
+      }
       };
-
+    
       handleItemClicked = (suggestion) => {
         this.setState({
           query: suggestion,
-          showSuggestions: false
+          showSuggestions: false,
+          infoText:''
         });
       
         this.props.updateEvents(suggestion);
@@ -33,6 +44,7 @@ class CitySearch extends Component {
     
     return (
       <>
+      
       <Col>
       {/* <div className="CitySearch">Choose a city to see the events having place there:</div> */}
       
@@ -49,7 +61,7 @@ class CitySearch extends Component {
                 onFocus={() => { this.setState({ showSuggestions: true }) }}
         />
       </InputGroup>
-      
+      <InfoAlert text={this.state.infoText} />
       <ul className="suggestions" style={this.state.showSuggestions ? {}: { display: 'none' }}>
           {this.state.suggestions.map((suggestion) => (
               <li key={suggestion} 
@@ -61,6 +73,7 @@ class CitySearch extends Component {
           </li>
       </ul>
       </Col>
+      
         </>
     );
   }
