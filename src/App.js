@@ -5,6 +5,7 @@ import { Container, Row } from "react-bootstrap";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
+import { OfflineAlert } from "./Alert";
 import { getEvents, extractLocations } from "./api";
 
 
@@ -53,6 +54,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          {!navigator.onLine && <OfflineAlert text={'You are currently offline, data may not be updated.'}/>}
         <Container>
         <Row className="d-flex justify-content-between p-3 m-3">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
