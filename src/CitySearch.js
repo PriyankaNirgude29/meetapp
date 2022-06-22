@@ -48,8 +48,8 @@ class CitySearch extends Component {
       <Col>
       {/* <div className="CitySearch">Choose a city to see the events having place there:</div> */}
       
-      <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">Events that have place in</InputGroup.Text>
+      <InputGroup className="mb-3">Meet App
+        <InputGroup.Text id="basic-addon1">Choose your nearest city</InputGroup.Text>
         <FormControl
           placeholder="Type the name of the city you are looking for"
           aria-label="City"

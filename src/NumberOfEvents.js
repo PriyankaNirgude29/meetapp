@@ -32,7 +32,7 @@ class NumberOfEvents extends Component {
        <Col>
       <ErrorAlert text={this.state.infoText} />
       <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">Number of events to show</InputGroup.Text>
+        <InputGroup.Text id="basic-addon1">Number of Events:</InputGroup.Text>
         <FormControl
           placeholder="Number between 1 and 32"
           aria-label="Username"
