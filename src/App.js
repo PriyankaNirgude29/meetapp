@@ -6,7 +6,8 @@ import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { OfflineAlert } from "./Alert";
-import { getEvents, extractLocations } from "./api";
+import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
+import WelcomeScreen from './WelcomeScreen';
 
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
     locations: [],
     locationSelected: 'all',
     numberOfEvents: 12,
+    showWelcomeScreen: undefined
   }
 
   updateEvents = (location, eventCount) => {
@@ -39,29 +41,40 @@ class App extends Component {
    })
   }
   
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
-      }
-    });
-  }
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+         getEvents().then((events) => {
+           if (this.mounted) {
+           this.setState({ events, locations: extractLocations(events) });
+          }
+      }); 
+   }
+}
 
-  componentWillUnmount(){
+componentWillUnmount(){
     this.mounted = false;
-  }
+}
+
   render() {
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
       <div className="App">
           {!navigator.onLine && <OfflineAlert text={'You are currently offline, data may not be updated.'}/>}
-        <Container>
+        <Container className="Cont_Back">
         <Row className="d-flex justify-content-between p-3 m-3">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
         </Row>
         <EventList events={this.state.events} />
        
         </Container>
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+           getAccessToken={() => { getAccessToken() }} />
       </div>
     );
   }
