@@ -49,8 +49,8 @@ class CitySearch extends Component {
       {/* <div className="CitySearch">Choose a city to see the events having place there:</div> */}
       
       <InputGroup className="mb-3">
-        <h4>Meet App</h4><br></br>
-        <InputGroup.Text id="basic-addon1">Choose your nearest city</InputGroup.Text>
+        <h2>Meet App</h2><br></br>
+        <InputGroup.Text id="basic-addon1">Choose your nearest city :</InputGroup.Text>
         <FormControl
           placeholder="Type the name of the city you are looking for"
           aria-label="City"
