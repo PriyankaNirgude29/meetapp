@@ -91,7 +91,7 @@ getData = () => {
           <h4>Distribution of Events in each city</h4>
          <ResponsiveContainer height={300} >
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-            <CartesianGrid />
+            <CartesianGrid  strokeDasharray="3 3" />
             <XAxis type="category" dataKey="city" name="City" />
             <YAxis
               allowDecimals={false}
