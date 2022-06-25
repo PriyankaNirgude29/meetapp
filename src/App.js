@@ -84,10 +84,12 @@ getData = () => {
         <Row className="d-flex justify-content-between p-3 m-3">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
         </Row>
-        <h4>Events in each city</h4>
+       
         <div className='data-vis-wrapper'>
+        <h4>Distribution of type of Events</h4>
           <EventGenre events={this.state.events} locations={this.state.locations} />
-        <ResponsiveContainer height={400} >
+          <h4>Distribution of Events in each city</h4>
+         <ResponsiveContainer height={400} >
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             <CartesianGrid />
             <XAxis type="category" dataKey="city" name="City" />
