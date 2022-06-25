@@ -8,6 +8,9 @@ import NumberOfEvents from "./NumberOfEvents";
 import { OfflineAlert } from "./Alert";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import WelcomeScreen from './WelcomeScreen';
+import {
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
+} from 'recharts';
 
 
 class App extends Component {
@@ -61,6 +64,16 @@ componentWillUnmount(){
     this.mounted = false;
 }
 
+getData = () => {
+  const {locations, events} = this.state;
+  const data = locations.map((location)=>{
+    const number = events.filter((event) => event.location === location).length
+    const city = location.split(', ').shift()
+    return {city, number};
+  })
+  return data;
+};
+
   render() {
     if (this.state.showWelcomeScreen === undefined) return <div className="App" />
     return (
@@ -70,6 +83,21 @@ componentWillUnmount(){
         <Row className="d-flex justify-content-between p-3 m-3">
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
         </Row>
+        <h4>Events in each city</h4>
+
+        <ScatterChart
+                width={400}
+                height={400}
+                margin={{
+                             top: 20, right: 20, bottom: 20, left: 20,
+                        }}
+        >
+        <CartesianGrid />
+        <XAxis type="number" dataKey="x" name="stature" unit="cm" />
+        <YAxis type="number" dataKey="y" name="weight" unit="kg" />
+        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+        <Scatter name="A school" data={this.getData()} fill="#8884d8" />
+        </ScatterChart>
         <EventList events={this.state.events} />
        
         </Container>
