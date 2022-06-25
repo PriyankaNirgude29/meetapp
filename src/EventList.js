@@ -8,7 +8,7 @@ class EventList extends Component {
   render() {
     const { events } = this.props;
     return (
-      <Row className="Eventlist d-flex">
+      <Row className="Eventlist d-flex justify-content-center">
          {events.map((event) => (
           <Col lg={3} md={4} sm={6} key={event.id}>
             <Event event={event} />
