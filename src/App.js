@@ -89,7 +89,7 @@ getData = () => {
         <h4>Distribution of type of Events</h4>
           <EventGenre events={this.state.events} locations={this.state.locations} />
           <h4>Distribution of Events in each city</h4>
-         <ResponsiveContainer height={400} >
+         <ResponsiveContainer height={300} >
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             <CartesianGrid />
             <XAxis type="category" dataKey="city" name="City" />
