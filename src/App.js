@@ -80,7 +80,6 @@ getData = () => {
     return (
       <div className="App">
           {!navigator.onLine && <OfflineAlert text={'You are currently offline, data may not be updated.'}/>}
-        <Header />
         <Container>
            <Row className="d-flex justify-content-center align-item-center p-3 m-3">
              <Col md={6} className="d-flex flex-column align-items-center justify-content-center p-5">
