@@ -8,6 +8,7 @@ import NumberOfEvents from "./NumberOfEvents";
 import { OfflineAlert } from "./Alert";
 import { getEvents, extractLocations, checkToken, getAccessToken } from "./api";
 import WelcomeScreen from './WelcomeScreen';
+import EventGenre from './EventGenre';
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
@@ -84,6 +85,8 @@ getData = () => {
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
         </Row>
         <h4>Events in each city</h4>
+        <div className='data-vis-wrapper'>
+          <EventGenre events={this.state.events} locations={this.state.locations} />
         <ResponsiveContainer height={400} >
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             <CartesianGrid />
@@ -98,6 +101,7 @@ getData = () => {
             <Scatter data={this.getData()} fill="#8884d8" />
           </ScatterChart>
         </ResponsiveContainer>
+        </div>
         <EventList events={this.state.events} />
        
         </Container>
