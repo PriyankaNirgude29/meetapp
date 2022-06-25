@@ -19,6 +19,7 @@ class Event extends Component {
     const { collapsed } = this.state;
     return (
       <div className="event" style={{border: '1px solid grey'}}>
+        
       <h2 className="summary">{event.summary}</h2>
       <p className="start-date">
         {event.start.dateTime} ({event.start.timeZone})
