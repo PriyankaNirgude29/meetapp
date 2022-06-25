@@ -1,7 +1,7 @@
 import React,{ Component } from "react";
 import "./App.css";
 import "./nprogress.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
@@ -80,41 +80,35 @@ getData = () => {
     return (
       <div className="App">
           {!navigator.onLine && <OfflineAlert text={'You are currently offline, data may not be updated.'}/>}
-        <Container>
-           <Row className="d-flex justify-content-center align-item-center p-3 m-3">
-             <Col md={6} className="d-flex flex-column align-items-center justify-content-center p-5">
-                 <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  
-                 <NumberOfEvents updateEvents = { this.updateEvents }/>
-             </Col>
-             <Col md={6} className='data-vis-wrapper d-flex flex-column'>
-              <h4>Distribution of type of Events</h4>
-              <EventGenre events={this.state.events} locations={this.state.locations} />
-             </Col>
-             <Col  md={12} className="d-flex flex-column align-items-center justify-content-around p-5">
-              <h4>Distribution of Events in each city</h4>
-              <ResponsiveContainer height={300} >
-                    <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                        <CartesianGrid  strokeDasharray="3 3" />
-                            <XAxis type="category" dataKey="city" name="City" />
-                            <YAxis
-                                    allowDecimals={false}
-                                    type="number"
-                                    dataKey="number"
-                                    name="Events"
-                            />
-                       <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                       <Scatter data={this.getData()} fill="#8884d8" />
-                   </ScatterChart>
-              </ResponsiveContainer>
-        </Col>
-        </Row> 
-        <Row>
-
-        </Row>
+        <Container className="Cont_Back">
+            <Row className="d-flex justify-content-between p-3 m-3">
+              <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />  <NumberOfEvents updateEvents = { this.updateEvents }/>
+           </Row>
+       
+        <div className='data-vis-wrapper'>
+        <h4>Distribution of type of Events</h4>
+          <EventGenre events={this.state.events} locations={this.state.locations} />
+        <h4>Distribution of Events in each city</h4>
+          <ResponsiveContainer height={300} >
+             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                <CartesianGrid  strokeDasharray="3 3" />
+                  <XAxis type="category" dataKey="city" name="City" />
+                  <YAxis
+                       allowDecimals={false}
+                       type="number"
+                       dataKey="number"
+                      name="Events"
+                  />
+               <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+               <Scatter data={this.getData()} fill="#8884d8" />
+             </ScatterChart>
+        </ResponsiveContainer>
+        </div>
         <EventList events={this.state.events} />
+       
+        </Container>
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
            getAccessToken={() => { getAccessToken() }} />
-        </Container>
       </div>
     );
   }
